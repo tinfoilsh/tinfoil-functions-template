@@ -1,31 +1,18 @@
 # Tinfoil Container Configuration
-# This file will be auto-populated when you deploy via the Tinfoil dashboard.
-# You can also edit it manually - see docs at https://docs.tinfoil.sh/containers/config
-#
-# After creating this repo from the template:
-# 1. Go to https://dash.tinfoil.sh and create a new container
-# 2. Provide this repository URL and your container details
-# 3. This file will be automatically updated with your deployment settings
-#
-# For updates: edit this file, commit, and push a new tag (e.g., v2)
-
+# For updates: edit this file, commit, run the workflow (e.g., v0.0.2)
 cvm-version: 0.7.5
 cpus: 2
 memory: 8192
 
-# Container configuration
-# Note: image must include SHA256 hash (e.g., image:tag@sha256:abc123...)
 containers:
-  - name: "app"
-    image: "your-image:tag@sha256:..."
+  - name: "hello-world"
+    image: "ghcr.io/tinfoilsh/tinfoil-containers-hello-world@sha256:c943b1cab16409e2e686ad71deab30364c27421852cdd6b3080df1c7a38331ed"
     env:
-      - LOG_LEVEL: "info"
+      - MESSAGE: "Hello from Tinfoil"
     secrets:
-      - API_KEY
-    command: ["--port", "8000"]
+      - GREETING_TOKEN
 
-# Shim configuration (adjust upstream-port and paths to match your container)
 shim:
-  upstream-port: 8000
+  upstream-port: 8080
   paths:
-    - /health
+    - /*
